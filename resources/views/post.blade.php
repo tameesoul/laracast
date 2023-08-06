@@ -1,1 +1,4 @@
-<?= $post;?>
+
+ <div>
+    <?= $post->body; ?>
+ </div>
