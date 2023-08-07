@@ -7,19 +7,19 @@
 </head>
 <body>
     <article>
-        <?php foreach($posts as $post)  :?>
+         @foreach($posts as $post)  
 
         <h1> 
-            <a href="/post/<?= $post->slug ?>">
+            <a href="/post/{{ $post->slug }}">
 
-            <?=$post->title ?>
+          {{$post->title}} 
         
           </a>
         </h1>
         <div>
-            <?= $post->excerpt ?>
+            {{$post->excerpt }}
         </div>
     </article>
-    <?php endforeach  ?>    
+     @endforeach      
 </body>
 </html>
