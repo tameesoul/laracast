@@ -20,12 +20,12 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('post/{post}',function($id)
+Route::get('post/{post:slug}',function(Post $post)
  {   
       
     return view("post" , [
     
-        'post'=> Post::find($id)
+        'post'=> $post
       
     ]);
 });
