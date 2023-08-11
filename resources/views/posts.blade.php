@@ -3,14 +3,13 @@
          @foreach($posts as $post)  
 
         <h1> 
-            <a href="/post/{{ $post->slug }}">
+            <a href="/post/{{$post->slug}}">
 
           {{$post->title}} 
         
           </a>
         </h1>
-
-        <a href="#">{{$post->Category->name}}</a>
+        <a href="categories/{{$post->category->slug}}">{{$post->Category->name}}</a>
         <div>
             {{$post->excerpt }}
         </div>
