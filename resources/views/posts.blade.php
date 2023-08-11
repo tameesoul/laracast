@@ -10,7 +10,7 @@
           </a>
         </h1>
 
-        <a href="#">{{$post->Category->id}}</a>
+        <a href="#">{{$post->Category->name}}</a>
         <div>
             {{$post->excerpt }}
         </div>
