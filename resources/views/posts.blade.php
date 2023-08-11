@@ -9,6 +9,8 @@
         
           </a>
         </h1>
+
+        <a href="#">{{$post->Category->id}}</a>
         <div>
             {{$post->excerpt }}
         </div>
