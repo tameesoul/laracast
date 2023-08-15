@@ -18,14 +18,21 @@ use App\Models\User;
 
 Route::get('/', function () {
 
-    \Illuminate\Support\Facades\DB::listen(function($query){
+    // \Illuminate\Support\Facades\DB::listen(function($query){
 
-        logger($query->sql);
-    });
+    //     logger($query->sql);
+    // });
 
+    $posts=Post::latest();
 
+    if(request('search'))
+    {
+        $posts->where('title','like' , '%' . request('search') . '%') 
+        ->orWhere('body','like' , '%' .request('search'). '%');
+    }
+    
     return view('posts', [
-        "posts"=>Post::latest()->get(),
+        "posts"=>$posts->get(),
         "categories"=>Category::all()
     ]);
 });
