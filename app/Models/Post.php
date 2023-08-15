@@ -14,12 +14,18 @@ class Post extends Model
    // protected $fillable = ['title', 'excerpt', 'body'];
 
 
-   public function scopeFilter($query , array $filter)
+   public function scopeFilter($query, array $filter)
    {
-    $query->when($filter['search'] ?? false , function($query , $search){
-        $query->where('title','like' , '%' . $search . '%') 
-       ->orWhere('body','like' , '%' .$search. '%');
-    });
+       $query->when($filter['search'] ?? false, function ($query, $search) {
+           $query->where('title', 'like', '%' . $search . '%')
+               ->orWhere('body', 'like', '%' . $search . '%');
+       });
+
+       $query->when($filter['category'] ?? false , fn($query ,$category)=>
+       $query->whereHas('category',fn($query)=>
+       $query->where('slug', $category)
+       )
+    );
    }
    public function getRouteKeyName()
    {
