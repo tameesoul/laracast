@@ -14,6 +14,15 @@ class Post extends Model
    // protected $fillable = ['title', 'excerpt', 'body'];
 
 
+   public function scopeFilter($query , array $filter)
+   {
+    if($filter['search'] ?? false)
+    {
+        $query->where('title','like' , '%' . request('search') . '%') 
+        ->orWhere('body','like' , '%' .request('search'). '%');
+    }
+
+   }
    public function getRouteKeyName()
    {
     return "slug";
@@ -22,7 +31,6 @@ class Post extends Model
    {
     return $this->belongsTo(Category::class);
    }
-
    public function author()
    {
     return $this->belongsTo(User::class,"user_id");
